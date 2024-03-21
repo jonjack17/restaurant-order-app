@@ -8,16 +8,27 @@ const orderArray = []
 
 document.addEventListener('click', function(e){
     if(e.target.id==='add-item-btn-container' || e.target.id==='add-item-btn') {
+         
+
         
-        
-        addItemToOrder()
-        renderOrder()
+        addItemToOrder(e)
+        // renderOrder()
     }
 })
 
-function renderOrder(){
+function addItemToOrder(e){
+    for (let item of menuArray) {
+        if (e.target.dataset.food === item.name ){
+           orderArray.push({name: item.name, price: item.price})
+        }
+    }
+    console.log(orderArray)
 
 }
+
+// function renderOrder(){
+    
+// }
 
 
 
@@ -37,8 +48,8 @@ function renderMenu(){
 
                     </div>
 
-                    <div id='add-item-btn-container'>
-                       <p id='add-item-btn'> + </p>
+                    <div id='add-item-btn-container' data-food='${item.name}'>
+                       <p id='add-item-btn' data-food='${item.name}'> + </p>
                     </div>
 
 
