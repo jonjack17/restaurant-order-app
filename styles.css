@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'Smythe', sans-serif;
     background-color: lightcyan;
+    
  
 }
 
@@ -74,7 +75,42 @@ h1 {
     
 }
 
+.order-inner-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 10px;
+   
+}
 
+.your-order {
+    text-align: center;
+}
+
+.item-price-order {
+    margin-left: auto;
+}
+
+#menu-container {
+    padding: 20px 40px 2px 40px;
+}
+
+ #order-container {
+    padding: 15px 40px 0px 40px;
+    min-height: 220px;
+   
+}
+
+.total-price-container {
+    display: flex;
+    border-top: 2px solid black;
+}
+
+
+.remove-btn {
+    color: #8b8b8b;
+}
 #add-item-btn-container:hover {
     border: 1px solid black;
     background: lightcyan;

@@ -12,7 +12,7 @@ document.addEventListener('click', function(e){
 
         
         addItemToOrder(e)
-        // renderOrder()
+        renderOrder()
     }
 })
 
@@ -26,9 +26,57 @@ function addItemToOrder(e){
 
 }
 
-// function renderOrder(){
+function renderOrder(){
+    const orderHtml = orderArray.map(function(item) {
+        
+        return `
+            
+
+            <div class='order-inner-container'>
+                <h3 class='item-name'> ${item.name} </h3>
+                <span class='remove-btn'> remove </span>
+                <p class='item-price-order'> $${item.price} </p>
+            </div>
+
+           
     
-// }
+        `
+       
+        }).join('')
+
+
+
+        orderDisplay.innerHTML = 
+        `
+        <h2 class='your-order'> Your Order </h2>
+        ${orderHtml}
+        <div class='total-price-container'>
+            <h3> Total price </h3>
+            <p class='item-price-order'> $${totalPrice(orderArray)} </p>
+        </div>
+        <button id='complete-order-btn'> Complete order </button>
+        `
+
+        function totalPrice(arr){
+            return arr.reduce(function(total, current) {
+                return total + current.price
+            }, 0)
+            } 
+             
+            
+            
+        }
+        
+
+
+
+
+
+
+    
+
+
+
 
 
 
