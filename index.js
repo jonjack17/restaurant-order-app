@@ -1,8 +1,14 @@
 import { menuArray } from "./data.js"
 
+  import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
+  console.log(uuidv4()) 
+
+
 
 const menuItems = document.getElementById('menu-container')
 const orderDisplay = document.getElementById('order-container')
+
+
 
 const orderArray = []
 
@@ -19,7 +25,7 @@ document.addEventListener('click', function(e){
 function addItemToOrder(e){
     for (let item of menuArray) {
         if (e.target.dataset.food === item.name ){
-           orderArray.push({name: item.name, price: item.price})
+           orderArray.push({name: item.name, price: item.price, uuid: uuidv4()})
         }
     }
     console.log(orderArray)
@@ -28,23 +34,22 @@ function addItemToOrder(e){
 
 function renderOrder(){
     const orderHtml = orderArray.map(function(item) {
-        
+      
+
         return `
             
 
             <div class='order-inner-container'>
                 <h3 class='item-name'> ${item.name} </h3>
-                <span class='remove-btn'> remove </span>
+                <span class='remove-btn' id='${item.uuid}'> remove </span>
                 <p class='item-price-order'> $${item.price} </p>
             </div>
-
-           
-    
         `
-       
+        
         }).join('')
 
-
+     
+   
 
         orderDisplay.innerHTML = 
         `
@@ -62,13 +67,37 @@ function renderOrder(){
                 return total + current.price
             }, 0)
             } 
-             
-            
-            
-        }
+
         
 
+            
+     const removeBtnArray = document.querySelectorAll('.remove-btn')
+     console.log(removeBtnArray)
 
+            removeBtnArray.forEach(function(item, index) {
+                item.addEventListener('click', function(){
+                    orderArray.splice(index, 1)
+                })
+            
+            })
+            
+
+   
+
+       
+         
+                  
+        
+          
+     
+       
+     }
+
+      
+        
+        
+
+        
 
 
 

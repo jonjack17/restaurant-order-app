@@ -97,8 +97,9 @@ h1 {
 }
 
  #order-container {
-    padding: 15px 40px 0px 40px;
+    padding: 15px 40px 40px 40px;
     min-height: 220px;
+
    
 }
 
@@ -122,6 +123,19 @@ h1 {
     transform: scale(1.25);
 }
 
+#complete-order-btn {
+    all: unset;
+    background-color: #16DB99;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16;
+    width: 100%;
+    padding: 20px 0px;
+    border-radius: 3px;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 30px;
+    font-weight: bold;
+}
 .item-name {
     margin-bottom: 0;
     margin-top: 0;
