@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 const menuItems = document.getElementById('menu-container')
 const orderDisplay = document.getElementById('order-container')
 const orderArray = []
+const paymentModal = document.getElementById('modal-container')
+
 
 document.addEventListener('click', function (e) {
     if (e.target.id === 'add-item-btn-container' || e.target.id === 'add-item-btn') {
@@ -13,8 +15,18 @@ document.addEventListener('click', function (e) {
 
 
         addItemToOrder(e)
-        renderOrder()
+        renderOrder(orderArray)
     }
+    
+        const removeBtnArray = document.querySelectorAll('.remove-btn')
+        removeItemFromOrder(removeBtnArray)
+        
+    
+    if (e.target.id === 'complete-order-btn') {
+        renderPaymentForm()
+    }
+    
+    
 })
 
 function addItemToOrder(e) {
@@ -23,70 +35,68 @@ function addItemToOrder(e) {
             orderArray.push({ name: item.name, price: item.price, uuid: uuidv4() })
         }
     }
-    console.log(orderArray)
+
 
 }
 
-function renderOrder() {
-    const orderHtml = orderArray.map(function (item) {
+
+function renderOrder(arr) {
+    if (arr.length >0) {
+        const orderHtml = arr.map(function (item) {
 
 
-        return `
-            
-
-            <div class='order-inner-container'>
-                <h3 class='item-name'> ${item.name} </h3>
-                <span class='remove-btn' id='${item.uuid}'> remove </span>
-                <p class='item-price-order'> $${item.price} </p>
+            return `
+                
+    
+                <div class='order-inner-container'>
+                    <h3 class='item-name'> ${item.name} </h3>
+                    <span class='remove-btn' id='${item.uuid}'> remove </span>
+                    <p class='item-price-order'> $${item.price} </p>
+                </div>
+            `
+    
+        }).join('')
+    
+        orderDisplay.innerHTML =
+            `
+            <h2 class='your-order'> Your Order </h2>
+            ${orderHtml}
+            <div class='total-price-container'>
+                <h3> Total price </h3>
+                <p class='item-price-order'> $${getTotalPrice(arr)} </p>
             </div>
-        `
-
-    }).join('')
-
-    orderDisplay.innerHTML =
-        `
-        <h2 class='your-order'> Your Order </h2>
-        ${orderHtml}
-        <div class='total-price-container'>
-            <h3> Total price </h3>
-            <p class='item-price-order'> $${totalPrice(orderArray)} </p>
-        </div>
-        <button id='complete-order-btn'> Complete order </button>
-        `
-
-    function totalPrice(arr) {
-        return arr.reduce(function (total, current) {
-            return total + current.price
-        }, 0)
+            <button id='complete-order-btn'> Complete order </button>
+            `
+    
+       
+    
+    } else {
+        orderDisplay.innerHTML =  ''
     }
-
-    const removeBtnArray = document.querySelectorAll('.remove-btn')
-    console.log(removeBtnArray)
-
-    removeBtnArray.forEach(function (item, index) {
-        item.addEventListener('click', function () {
-            orderArray.splice(index, 1)
-        })
-
-    })
-
+    
+    
 }
 
+function getTotalPrice(arr) {
+    return arr.reduce(function (total, current) {
+        return total + current.price
+    }, 0)
+}
 
+function removeItemFromOrder(arr) {
+    arr.forEach(function (item, index) {
+        item.addEventListener('click', function () {
+             orderArray.splice(index, 1)
+             renderOrder(orderArray)
+        })
+    
+    })
+    
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+function renderPaymentForm() {
+    paymentModal.style.display= 'flex'
+}
 
 
 function renderMenu() {
