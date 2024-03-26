@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Smythe" />
 
     <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 </head>
 
 
@@ -34,12 +36,40 @@
         </section>
 
     </div>
-    <div id="modal-container">
 
-        <p> a;lskjfsl;dkjfklds;jf </p>
+    <div id="overlay">
+        <div id="modal-container">
+            <h2 class="payment-header"> Enter card details </h2>
+            <form id="payment-form">
+                <input 
+                    type="text" 
+                    placeholder="Enter your name"
+                    name="name"
+                    id="name"
+                    required
+                    >
+                <input 
+                    type="text" 
+                    placeholder="Enter card number"
+                    name="card-number"
+                    id="card-number"
+                    required
+                    >
+                <input 
+                    type="text" 
+                    placeholder="Enter CCV"
+                    name="ccv"
+                    id="ccv"
+                    required
+                    >
+                <button id="pay-btn" type="submit"> Pay </button>
+            </form>
+            
 
 
+        </div>
     </div>
+      
 
     
 

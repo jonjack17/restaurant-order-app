@@ -7,11 +7,14 @@ const menuItems = document.getElementById('menu-container')
 const orderDisplay = document.getElementById('order-container')
 const orderArray = []
 const paymentModal = document.getElementById('modal-container')
+const overlay = document.getElementById('overlay')
+const paymentForm=document.getElementById('payment-form')
+const payBtn=document.getElementById('pay-btn')
+
 
 
 document.addEventListener('click', function (e) {
     if (e.target.id === 'add-item-btn-container' || e.target.id === 'add-item-btn') {
-
 
 
         addItemToOrder(e)
@@ -95,9 +98,23 @@ function removeItemFromOrder(arr) {
 }
 
 function renderPaymentForm() {
-    paymentModal.style.display= 'flex'
+    paymentModal.style.display='flex'
+    overlay.style.display='flex'
 }
 
+paymentForm.addEventListener('submit', function(e){
+    e.preventDefault()
+    const payFormData = new FormData(paymentForm)
+    const userName = payFormData.get('name')
+    paymentModal.style.display='none'
+    overlay.style.display='none'
+    orderDisplay.innerHTML = `
+        <div class='thank-you-container'>
+            <h3> Thanks, ${userName}! Your order is on its way! </h3>
+        </div>
+    `
+    
+})
 
 function renderMenu() {
     const menuHtml = menuArray.map(function (item) {

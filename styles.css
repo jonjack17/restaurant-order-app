@@ -110,7 +110,7 @@ h1 {
 
  #order-container {
     padding: 15px 40px 40px 40px;
-    min-height: 220px;
+    min-height: 275px;
 
    
 }
@@ -141,7 +141,7 @@ h1 {
     transform: scale(1.25);
 }
 
-#complete-order-btn {
+#complete-order-btn, #pay-btn {
     all: unset;
     background-color: #16DB99;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -153,6 +153,15 @@ h1 {
     color: #ffffff;
     margin-top: 30px;
     font-weight: bold;
+}
+
+#complete-order-btn:hover, #pay-btn:hover {
+    box-shadow: 0px 0px 5px black;
+    background-color: #5bd9af;
+}
+
+#complete-order-btn:active, #pay-btn:active {
+    transform: scale(0.97);
 }
 .item-name {
     margin-bottom: 0;
@@ -183,10 +192,25 @@ h1 {
     margin: 0;
 }
 
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;   
+    margin: auto;
+      
+    background-color: rgba(143, 143, 143, 0.29);
+    width: 100%vw;
+    height: 100%vh;
+}
+
 #modal-container {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     display: none;
-    height: 400px;
+    flex-direction: column;
+    height: fit-content;
     width: 400px;
     background: #ffffff;
     box-shadow: 0px 0px 25px grey;
@@ -196,7 +220,37 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;   
-    margin: auto;
-      
-   
+    margin: auto;   
+}
+
+.payment-header {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 20px;
+}
+form {
+    
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    
+    padding: 20px;
+}
+
+input {
+   height: 30px;
+   font-size: 20px;
+   border: none;
+   border: 1px solid #757575;
+   border-radius: 3px;
+   padding: 15px 20px;
+}
+
+.thank-you-container{
+    background-color: #ECFDF5;
+    color: #065F46;
+    font-size: 28px;
+    text-align: center;
+    padding: 15px; 
+    margin-top: 25px;
 }
