@@ -1,40 +1,35 @@
 import { menuArray } from "./data.js"
 
-  import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
-  console.log(uuidv4()) 
-
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
 
 const menuItems = document.getElementById('menu-container')
 const orderDisplay = document.getElementById('order-container')
-
-
-
 const orderArray = []
 
-document.addEventListener('click', function(e){
-    if(e.target.id==='add-item-btn-container' || e.target.id==='add-item-btn') {
-         
+document.addEventListener('click', function (e) {
+    if (e.target.id === 'add-item-btn-container' || e.target.id === 'add-item-btn') {
 
-        
+
+
         addItemToOrder(e)
         renderOrder()
     }
 })
 
-function addItemToOrder(e){
+function addItemToOrder(e) {
     for (let item of menuArray) {
-        if (e.target.dataset.food === item.name ){
-           orderArray.push({name: item.name, price: item.price, uuid: uuidv4()})
+        if (e.target.dataset.food === item.name) {
+            orderArray.push({ name: item.name, price: item.price, uuid: uuidv4() })
         }
     }
     console.log(orderArray)
 
 }
 
-function renderOrder(){
-    const orderHtml = orderArray.map(function(item) {
-      
+function renderOrder() {
+    const orderHtml = orderArray.map(function (item) {
+
 
         return `
             
@@ -45,13 +40,10 @@ function renderOrder(){
                 <p class='item-price-order'> $${item.price} </p>
             </div>
         `
-        
-        }).join('')
 
-     
-   
+    }).join('')
 
-        orderDisplay.innerHTML = 
+    orderDisplay.innerHTML =
         `
         <h2 class='your-order'> Your Order </h2>
         ${orderHtml}
@@ -62,47 +54,23 @@ function renderOrder(){
         <button id='complete-order-btn'> Complete order </button>
         `
 
-        function totalPrice(arr){
-            return arr.reduce(function(total, current) {
-                return total + current.price
-            }, 0)
-            } 
+    function totalPrice(arr) {
+        return arr.reduce(function (total, current) {
+            return total + current.price
+        }, 0)
+    }
 
-        
+    const removeBtnArray = document.querySelectorAll('.remove-btn')
+    console.log(removeBtnArray)
 
-            
-     const removeBtnArray = document.querySelectorAll('.remove-btn')
-     console.log(removeBtnArray)
+    removeBtnArray.forEach(function (item, index) {
+        item.addEventListener('click', function () {
+            orderArray.splice(index, 1)
+        })
 
-            removeBtnArray.forEach(function(item, index) {
-                item.addEventListener('click', function(){
-                    orderArray.splice(index, 1)
-                })
-            
-            })
-            
+    })
 
-   
-
-       
-         
-                  
-        
-          
-     
-       
-     }
-
-      
-        
-        
-
-        
-
-
-
-
-    
+}
 
 
 
@@ -110,9 +78,20 @@ function renderOrder(){
 
 
 
-function renderMenu(){
+
+
+
+
+
+
+
+
+
+
+
+function renderMenu() {
     const menuHtml = menuArray.map(function (item) {
-     return   `
+        return `
                <div class='food-item-container'>
                     <div class='food-emoji-container'>
                         <p class='food-emoji'> ${item.emoji} </p>
